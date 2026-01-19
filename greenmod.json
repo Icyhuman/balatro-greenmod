@@ -1,0 +1,13 @@
+{
+    "id": "GROLM",
+    "name": "Green",
+    "author": ["Icyhuman"],
+    "description": "THandsome modder tryna figure this shit out",
+    "prefix": "grolm",
+    "main_file": "grolm.lua",
+    "badge_colour": "c7638f",
+    "dependencies": [
+        "Steamodded (>=1.0.0~ALPHA-1225a)"
+    ],
+    "version": "1.0.0"
+}

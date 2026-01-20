@@ -102,3 +102,39 @@ SMODS.Joker {
 		end
 	end
 }
+
+SMODS.Atlas {
+	key = "gormus",
+	path = "gormus.png",
+	px = 71,
+	py = 95
+}
+
+
+SMODS.Joker {
+	key = 'gormus',
+    blueprint_compat = true,
+	loc_txt = {
+		name = 'Gormus the Green',
+		text = {
+            "{C:green}Green {}cards are infused with potent magic,",
+            "granting them {X:mult,C:white}X0.1{} Mult{}{C:green} permanently{}"
+		}
+	},
+	config = { extra = { xmult = 0.1 } },
+	rarity = 1,
+	atlas = 'gormus',
+	pos = { x = 0, y = 0 },
+	cost = 2,
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.play then
+			if SMODS.has_enhancement(context.other_card, 'm_green_green') then
+                context.other_card.ability.perma_x_mult = (context.other_card.ability.perma_x_mult or 1) +
+                card.ability.extra.xmult
+				return {
+					message = 'Greenchanted!'
+				}
+			end
+		end
+	end
+}

@@ -3,5 +3,7 @@ Green up your cards, and utilize strong men to enhance the greenousity of your d
 This mod is my first one and also in a very early stage so it has yet to become good.
 
 ## How to use
-Install steamodded: https://github.com/Steamodded/smods
-then put the greenmod folder in your mods folder.
+Install steamodded: https://github.com/Steamodded/smods \n
+click the code button then choose download zip to download this mod. \n
+Unzip to a folder, it won't work if you put the loose files straight in your mods folder. \n
+Then put the folder in your mods folder.

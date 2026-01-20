@@ -67,3 +67,38 @@ SMODS.Joker {
         end
     end,
 }
+
+SMODS.Atlas {
+	key = "gmg",
+	path = "greenmangroup.png",
+	px = 71,
+	py = 95
+}
+
+
+SMODS.Joker {
+	key = 'greenmangroup',
+    blueprint_compat = true,
+	loc_txt = {
+		name = 'Green Man Group',
+		text = {
+            "{C:green}Green {}cards are retriggered {C:attention}2 {}times"
+		}
+	},
+	config = { extra = { repetitions = 2 } },
+	rarity = 1,
+	atlas = 'gmg',
+	pos = { x = 0, y = 0 },
+	cost = 2,
+	calculate = function(self, card, context)
+		if context.cardarea == G.play and context.repetition and not context.repetition_only then
+			if SMODS.has_enhancement(context.other_card, 'm_green_green') then
+				return {
+					message = 'Greentriggered!',
+					repetitions = card.ability.extra.repetitions,
+					card = context.other_card
+				}
+			end
+		end
+	end
+}

@@ -2,7 +2,7 @@
     "id": "GREENMOD",
     "name": "Green",
     "author": ["Icyhuman"],
-    "description": "THandsome modder tryna figure this shit out",
+    "description": "Green your cards, then utilize various strong jokers to achieve maximum greenification!",
     "prefix": "green",
     "main_file": "greenmod.lua",
     "badge_colour": "c7638f",

@@ -90,6 +90,10 @@ SMODS.Joker {
 	atlas = 'gmg',
 	pos = { x = 0, y = 0 },
 	cost = 2,
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
+        return { vars = { card.ability.extra.dollars } }
+    end,
 	calculate = function(self, card, context)
 		if context.cardarea == G.play and context.repetition and not context.repetition_only then
 			if SMODS.has_enhancement(context.other_card, 'm_green_green') then
@@ -126,6 +130,10 @@ SMODS.Joker {
 	atlas = 'gormus',
 	pos = { x = 0, y = 0 },
 	cost = 2,
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
+        return { vars = { card.ability.extra.dollars } }
+    end,
 	calculate = function(self, card, context)
 		if context.individual and context.cardarea == G.play then
 			if SMODS.has_enhancement(context.other_card, 'm_green_green') then
@@ -133,6 +141,47 @@ SMODS.Joker {
                 card.ability.extra.xmult
 				return {
 					message = 'Greenchanted!'
+				}
+			end
+		end
+	end
+}
+
+SMODS.Atlas {
+	key = "greenback",
+	path = "greenback.png",
+	px = 71,
+	py = 95
+}
+
+
+SMODS.Joker {
+	key = 'greenback',
+    blueprint_compat = true,
+	loc_txt = {
+		name = 'Greenback',
+		text = {
+            "The {C:green}Federal Greeserve {}issues {C:green} Green{}-backed securities,",
+            "increasing the value of played {C:green}Green{} cards by {C:money}3${}",
+            "when held in hand"
+		}
+	},
+	config = { extra = { cash = 3 } },
+	rarity = 1,
+	atlas = 'greenback',
+	pos = { x = 0, y = 0 },
+	cost = 2,
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
+        return { vars = { card.ability.extra.dollars } }
+    end,
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.play then
+			if SMODS.has_enhancement(context.other_card, 'm_green_green') then
+                context.other_card.ability.perma_h_dollars = (context.other_card.ability.perma_h_dollars or 0) +
+                card.ability.extra.cash
+				return {
+					message = 'This will surely have no negative impact on the economy!'
 				}
 			end
 		end

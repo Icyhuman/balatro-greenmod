@@ -1,0 +1,69 @@
+--Horribly inefficient, i horribly dont care lol
+SMODS.Atlas {
+	key = "greengary",
+	path = "greengary.png",
+	px = 71,
+	py = 95
+}
+
+
+SMODS.Joker {
+	key = 'greengary',
+	loc_txt = {
+		name = 'Green Gary',
+		text = {
+            "{C:green}Greenly {}gives {C:mult}+#1# {} Mult"
+		}
+	},
+	config = { extra = { mult = 69 } },
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.mult } }
+	end,
+	rarity = 1,
+	atlas = 'greengary',
+	pos = { x = 0, y = 0 },
+	cost = 2,
+	calculate = function(self, card, context)
+		if context.joker_main then
+			return {
+				mult_mod = card.ability.extra.mult,
+				message = localize { type = 'variable', key = 'a_mult', vars = { card.ability.extra.mult } }
+            }
+		end
+	end
+}
+
+SMODS.Atlas {
+	key = "greenlord",
+	path = "greenlord.png",
+	px = 71,
+	py = 95
+}
+-- Greenlord
+SMODS.Joker {
+    key = "greenlord",
+    blueprint_compat = true,
+    rarity = 1,
+    cost = 5,
+    atlas = 'greenlord',
+    pos = { x = 0, y = 0 },
+    loc_txt = {
+		name = 'Greenlord Glash\'talar',
+		text = {
+            "{C:green}Green {}cards give {X:mult,C:white}X3{} Mult{}"
+		}
+	},
+    config = { extra = { xmult = 3 } },
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
+        return { vars = { card.ability.extra.dollars } }
+    end,
+    calculate = function(self, card, context)
+        if context.individual and context.cardarea == G.play and
+            SMODS.has_enhancement(context.other_card, 'm_green_green') then
+            return {
+                xmult = card.ability.extra.xmult
+            }
+        end
+    end,
+}

@@ -187,3 +187,50 @@ SMODS.Joker {
 		end
 	end
 }
+
+SMODS.Atlas {
+	key = "greenday",
+	path = "greenday.png",
+	px = 71,
+	py = 95
+}
+
+
+SMODS.Joker {
+	key = 'greenday',
+    blueprint_compat = false,
+	loc_txt = {
+		name = 'Green Day',
+		text = {
+            "If played card walks a lonely road",
+            "it walks these empty streets",
+            "On the boulevard of being {C:green}Green{}",
+			"{C:inactive}(Playing a single card{} {C:green}Greens{}{C:inactive} it){} "
+		}
+	},
+	rarity = 1,
+	atlas = 'greenday',
+	pos = { x = 0, y = 0 },
+	cost = 2,
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
+        return 
+    end,
+	calculate = function(self, card, context)
+		if context.before and #context.full_hand == 1 then
+            for _, scored_card in ipairs(context.scoring_hand) do
+                scored_card:set_ability('m_green_green', nil, true)
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        scored_card:juice_up()
+                        return true
+                    end
+                }))
+            end
+
+            return {
+                message = 'Sometimes, I wish someone out there will find me'
+            }
+        end
+	end
+}

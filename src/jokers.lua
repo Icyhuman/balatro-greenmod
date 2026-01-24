@@ -234,3 +234,150 @@ SMODS.Joker {
         end
 	end
 }
+
+SMODS.Atlas {
+	key = "wip",
+	path = "wip.png",
+	px = 71,
+	py = 95
+}
+
+SMODS.Joker {
+	key = 'kalechip',
+    blueprint_compat = true,
+	loc_txt = {
+		name = 'Kale Chip',
+		text = {
+            "Played{C:green} Green{} cards eat a {C:red,E:2}kale chip{}",
+            "making them healthier which causes them to",
+            "permanently give {C:chips}+15{} chips"
+		}
+	},
+	config = { extra = { chips = 15 } },
+	rarity = 1,
+	atlas = 'wip',
+	pos = { x = 0, y = 0 },
+	cost = 2,
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
+        return {}
+    end,
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.play then
+			if SMODS.has_enhancement(context.other_card, 'm_green_green') then
+                context.other_card.ability.perma_bonus = (context.other_card.ability.perma_bonus or 0) +
+                card.ability.extra.chips
+				return {
+					message = 'Yum!'
+				}
+			end
+		end
+	end
+}
+
+SMODS.Joker {
+	key = 'multjoker',
+    blueprint_compat = true,
+	loc_txt = {
+		name = 'multcardjoker_1',
+		text = {
+            "The{C:legendary} Mod Creator{} needs to come up with a {C:edition}good idea{}",
+            "for a joker that adds {C:mult}+5{} mult to played {C:green}green{} cards",
+            "so all the base enhancements are covered"
+		}
+	},
+	config = { extra = { mult = 5 } },
+	rarity = 1,
+	atlas = 'wip',
+	pos = { x = 0, y = 0 },
+	cost = 2,
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
+        return {}
+    end,
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.play then
+			if SMODS.has_enhancement(context.other_card, 'm_green_green') then
+                context.other_card.ability.perma_mult = (context.other_card.ability.perma_mult or 0) +
+                card.ability.extra.mult
+				return {
+					message = 'trigger_multadded'
+				}
+			end
+		end
+	end
+}
+
+SMODS.Atlas {
+	key = "greensteel",
+	path = "greensteel.png",
+	px = 71,
+	py = 95
+}
+
+SMODS.Joker {
+	key = 'greensteel',
+    blueprint_compat = true,
+	loc_txt = {
+		name = 'Greensteel the Hedgehog',
+		text = {
+            "This joker\'s {C:legendary}Cold-as-Steel{} demeanor seeps into played {C:green}green{} cards,",
+            "granting them {X:mult,C:white}X0.1{} Mult{} when held in hand"
+		}
+	},
+	config = { extra = { xmult = 0.1 } },
+	rarity = 1,
+	atlas = 'greensteel',
+	pos = { x = 0, y = 0 },
+	cost = 2,
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
+        return {}
+    end,
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.play then
+			if SMODS.has_enhancement(context.other_card, 'm_green_green') then
+                context.other_card.ability.perma_h_x_mult = (context.other_card.ability.perma_h_x_mult or 1) +
+                card.ability.extra.xmult
+				return {
+					message = 'nothing personnel, kid'
+				}
+			end
+		end
+	end
+}
+
+SMODS.Joker {
+	key = 'greenade',
+    blueprint_compat = false,
+	loc_txt = {
+		name = 'Greenade',
+		text = {
+            "Cards in first discard of round are either",
+            "{C:red,E:2}destroyed{} or {C:green}greened{}"
+		}
+	},
+	rarity = 1,
+	atlas = 'wip',
+	pos = { x = 0, y = 0 },
+	cost = 2,
+	config = { },
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
+        return {}
+    end,
+	calculate = function(self, card, context)
+		if context.first_hand_drawn then
+            local eval = function() return G.GAME.current_round.discards_used == 0 and not G.RESET_JIGGLES end
+            juice_card_until(card, eval, true)
+        end
+        if context.discard and
+            G.GAME.current_round.discards_used <= 0 then
+					if SMODS.pseudorandom_probability(card, 'green_greenade', 1, 2) then
+						return{remove = true}
+					else
+						context.other_card:set_ability('m_green_green', nil, true)
+				end
+			end
+	end
+}

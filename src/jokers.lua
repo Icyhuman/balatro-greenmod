@@ -236,8 +236,8 @@ SMODS.Joker {
 }
 
 SMODS.Atlas {
-	key = "wip",
-	path = "wip.png",
+	key = "kalechip",
+	path = "kalechip.png",
 	px = 71,
 	py = 95
 }
@@ -255,7 +255,7 @@ SMODS.Joker {
 	},
 	config = { extra = { chips = 15 } },
 	rarity = 1,
-	atlas = 'wip',
+	atlas = 'kalechip',
 	pos = { x = 0, y = 0 },
 	cost = 2,
     loc_vars = function(self, info_queue, card)
@@ -275,6 +275,13 @@ SMODS.Joker {
 	end
 }
 
+SMODS.Atlas {
+	key = "multjoker",
+	path = "multjoker.png",
+	px = 71,
+	py = 95
+}
+
 SMODS.Joker {
 	key = 'multjoker',
     blueprint_compat = true,
@@ -288,7 +295,7 @@ SMODS.Joker {
 	},
 	config = { extra = { mult = 5 } },
 	rarity = 1,
-	atlas = 'wip',
+	atlas = 'multjoker',
 	pos = { x = 0, y = 0 },
 	cost = 2,
     loc_vars = function(self, info_queue, card)
@@ -347,6 +354,14 @@ SMODS.Joker {
 	end
 }
 
+SMODS.Atlas {
+	key = "greenade",
+	path = "greenade.png",
+	px = 71,
+	py = 95
+}
+
+
 SMODS.Joker {
 	key = 'greenade',
     blueprint_compat = false,
@@ -358,7 +373,7 @@ SMODS.Joker {
 		}
 	},
 	rarity = 1,
-	atlas = 'wip',
+	atlas = 'greenade',
 	pos = { x = 0, y = 0 },
 	cost = 2,
 	config = { },
@@ -379,5 +394,98 @@ SMODS.Joker {
 						context.other_card:set_ability('m_green_green', nil, true)
 				end
 			end
+	end
+}
+
+SMODS.Atlas {
+	key = "greenzero",
+	path = "greenzero.png",
+	px = 71,
+	py = 95
+}
+
+SMODS.Joker {
+	key = 'greenzero',
+    blueprint_compat = true,
+	loc_txt = {
+		name = 'Green 0',
+		text = {
+            "Played {C:green}green{} cards gain a {C:green}1 in 20{}",
+            "chance to win {C:money}$20{}"
+		}
+	},
+	rarity = 1,
+	atlas = 'greenzero',
+	pos = { x = 0, y = 0 },
+	cost = 2,
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
+        return {}
+    end,
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.play then
+			if SMODS.has_enhancement(context.other_card, 'm_green_green') then
+                context.other_card.ability.extra.num = context.other_card.ability.extra.num +
+                1
+				return {
+					message = 'put it all on green, baby!'
+				}
+			end
+		end
+	end
+}
+
+SMODS.Atlas {
+	key = "greeneggs",
+	path = "wip.png",
+	px = 71,
+	py = 95
+}
+
+SMODS.Joker {
+	key = 'greeneggs',
+    blueprint_compat = false,
+	loc_txt = {
+		name = 'Green eggs (no ham)',
+		text = {
+            "Sell this to {C:green}green{} {C:money}#1#{} cards in your deck",
+            "increases by {C:money}3{} each turn"
+		}
+	},
+	config = { extra = { greens = 3 , gain = 3} },
+	rarity = 1,
+	atlas = 'greeneggs',
+	pos = { x = 0, y = 0 },
+	cost = 2,
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
+        return { vars = { card.ability.extra.greens } }
+    end,
+	calculate = function(self, card, context)
+		if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
+            card.ability.extra.greens = card.ability.extra.greens + card.ability.extra.gain
+            return {
+                message = 'eggs!',
+            }
+        end
+		if context.selling_self then
+			if G.playing_cards then
+				local greens = card.ability.extra.greens
+				local cards = {}
+				for _, playing_card in ipairs(G.playing_cards) do
+					table.insert(cards, playing_card)
+				end
+				pseudoshuffle(cards, "green_shuffle")
+            	for _, playing_card in ipairs(cards) do
+                	if not SMODS.has_enhancement(playing_card, 'm_green_green') and greens > 0 then
+						playing_card:set_ability('m_green_green', nil, true)
+						greens=greens-1
+					end
+            	end
+        	end
+			return {
+                message = 'greened!',
+            }
+		end
 	end
 }

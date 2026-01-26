@@ -1,8 +1,8 @@
 {
     "id": "GREENMOD",
-    "name": "Green",
+    "name": "Greenmod",
     "author": ["Icyhuman"],
-    "description": "Green your cards, then utilize various strong jokers to achieve maximum greenification!",
+    "description": "A mod focused around incrementally improving cards, by giving them the new enhancement, Green, which does nothing on its own but enables several powerful jokers",
     "prefix": "green",
     "main_file": "greenmod.lua",
     "badge_colour": "c7638f",

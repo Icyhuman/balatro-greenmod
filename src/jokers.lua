@@ -1,37 +1,37 @@
---Horribly inefficient, i horribly dont care lol
-SMODS.Atlas {
-	key = "greengary",
-	path = "greengary.png",
-	px = 71,
-	py = 95
-}
+--Horribly inefficient to give every card its own atlas, i horribly dont care lol
+--SMODS.Atlas {
+--	key = "greengary",
+--	path = "greengary.png",
+--	px = 71,
+--	py = 95
+--}
 
-
-SMODS.Joker {
-	key = 'greengary',
-	loc_txt = {
-		name = 'Green Gary',
-		text = {
-            "{C:green}Greenly {}gives {C:mult}+#1# {} Mult"
-		}
-	},
-	config = { extra = { mult = 69 } },
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.mult } }
-	end,
-	rarity = 1,
-	atlas = 'greengary',
-	pos = { x = 0, y = 0 },
-	cost = 2,
-	calculate = function(self, card, context)
-		if context.joker_main then
-			return {
-				mult_mod = card.ability.extra.mult,
-				message = localize { type = 'variable', key = 'a_mult', vars = { card.ability.extra.mult } }
-            }
-		end
-	end
-}
+-- This section remains commented out in memory of my homie, Green Gary, who taught me what it means to make your first joker
+--SMODS.Joker {
+--	key = 'greengary',
+--	loc_txt = {
+--		name = 'Green Gary',
+--		text = {
+  --          "{C:green}Greenly {}gives {C:mult}+#1# {} Mult"
+	--	}
+	--},
+--	config = { extra = { mult = 69 } },
+--	loc_vars = function(self, info_queue, card)
+--		return { vars = { card.ability.extra.mult } }
+--	end,
+--	rarity = 1,
+--	atlas = 'greengary',
+--	pos = { x = 0, y = 0 },
+--	cost = 2,
+--	calculate = function(self, card, context)
+--		if context.joker_main then
+--			return {
+--				mult_mod = card.ability.extra.mult,
+--				message = localize { type = 'variable', key = 'a_mult', vars = { card.ability.extra.mult } }
+  --          }
+	--	end
+--	end
+--}
 
 SMODS.Atlas {
 	key = "greenlord",
@@ -43,8 +43,8 @@ SMODS.Atlas {
 SMODS.Joker {
     key = "greenlord",
     blueprint_compat = true,
-    rarity = 1,
-    cost = 5,
+    rarity = 4,
+    cost = 20,
     atlas = 'greenlord',
     pos = { x = 0, y = 0 },
     loc_txt = {
@@ -86,10 +86,10 @@ SMODS.Joker {
 		}
 	},
 	config = { extra = { repetitions = 2 } },
-	rarity = 1,
+	rarity = 3,
 	atlas = 'gmg',
 	pos = { x = 0, y = 0 },
-	cost = 2,
+	cost = 6,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
         return { vars = { card.ability.extra.dollars } }
@@ -126,10 +126,10 @@ SMODS.Joker {
 		}
 	},
 	config = { extra = { xmult = 0.1 } },
-	rarity = 1,
+	rarity = 2,
 	atlas = 'gormus',
 	pos = { x = 0, y = 0 },
-	cost = 2,
+	cost = 5,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
         return { vars = { card.ability.extra.dollars } }
@@ -167,10 +167,10 @@ SMODS.Joker {
 		}
 	},
 	config = { extra = { cash = 3 } },
-	rarity = 1,
+	rarity = 2,
 	atlas = 'greenback',
 	pos = { x = 0, y = 0 },
-	cost = 2,
+	cost = 4,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
         return { vars = { card.ability.extra.dollars } }
@@ -257,7 +257,7 @@ SMODS.Joker {
 	rarity = 1,
 	atlas = 'kalechip',
 	pos = { x = 0, y = 0 },
-	cost = 2,
+	cost = 3,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
         return {}
@@ -297,7 +297,7 @@ SMODS.Joker {
 	rarity = 1,
 	atlas = 'multjoker',
 	pos = { x = 0, y = 0 },
-	cost = 2,
+	cost = 3,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
         return {}
@@ -333,10 +333,10 @@ SMODS.Joker {
 		}
 	},
 	config = { extra = { xmult = 0.1 } },
-	rarity = 1,
+	rarity = 2,
 	atlas = 'greensteel',
 	pos = { x = 0, y = 0 },
-	cost = 2,
+	cost = 6,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
         return {}
@@ -372,10 +372,10 @@ SMODS.Joker {
             "{C:red,E:2}destroyed{} or {C:green}greened{}"
 		}
 	},
-	rarity = 1,
+	rarity = 3,
 	atlas = 'greenade',
 	pos = { x = 0, y = 0 },
-	cost = 2,
+	cost = 4,
 	config = { },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
@@ -417,7 +417,7 @@ SMODS.Joker {
 	rarity = 1,
 	atlas = 'greenzero',
 	pos = { x = 0, y = 0 },
-	cost = 2,
+	cost = 3,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
         return {}
@@ -437,7 +437,7 @@ SMODS.Joker {
 
 SMODS.Atlas {
 	key = "greeneggs",
-	path = "wip.png",
+	path = "greeneggs.png",
 	px = 71,
 	py = 95
 }
@@ -487,5 +487,64 @@ SMODS.Joker {
                 message = 'greened!',
             }
 		end
+	end
+}
+
+SMODS.Atlas {
+	key = "greenthumb",
+	path = "greenthumb.png",
+	px = 71,
+	py = 95
+}
+
+SMODS.Joker {
+	key = 'greenthumb',
+    blueprint_compat = true,
+	loc_txt = {
+		name = 'Green thumb',
+		text = {
+            "{C:green}Green{} cards held in hand are also",
+            "improved by {C:green}green{} jokers"
+		}
+	},
+	rarity = 2,
+	atlas = 'greenthumb',
+	pos = { x = 0, y = 0 },
+	cost = 5,
+	config = { extra = { xmult = 0.1 ,  cash = 3, chips = 15, mult = 5, hxmult = 0.1} },
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_green_green
+        return {}
+    end,
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.hand and not context.end_of_round and SMODS.has_enhancement(context.other_card, 'm_green_green') then
+            for _, gormus in ipairs(SMODS.find_card("j_green_gormus")) do 
+				context.other_card.ability.perma_x_mult = (context.other_card.ability.perma_x_mult or 1) +
+                card.ability.extra.xmult
+			end
+			for _, dolar in ipairs(SMODS.find_card("j_green_greenback")) do 
+				context.other_card.ability.perma_h_dollars = (context.other_card.ability.perma_h_dollars or 0) +
+                card.ability.extra.cash
+			end
+			for _, kale in ipairs(SMODS.find_card("j_green_kalechip")) do 
+				context.other_card.ability.perma_bonus = (context.other_card.ability.perma_bonus or 0) +
+                card.ability.extra.chips
+			end
+			for _, mult in ipairs(SMODS.find_card("j_green_multjoker")) do 
+				context.other_card.ability.perma_mult = (context.other_card.ability.perma_mult or 0) +
+                card.ability.extra.mult
+			end
+			for _, edgy in ipairs(SMODS.find_card("j_green_greensteel")) do 
+				context.other_card.ability.perma_h_x_mult = (context.other_card.ability.perma_h_x_mult or 1) +
+                card.ability.extra.hxmult
+			end
+            for _, gamba in ipairs(SMODS.find_card("j_green_greenzero")) do 
+				context.other_card.ability.extra.num = context.other_card.ability.extra.num +
+                1
+			end
+			return {
+                message = 'Overgrowth!',
+            }
+        end
 	end
 }

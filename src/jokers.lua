@@ -161,7 +161,7 @@ SMODS.Joker {
 	loc_txt = {
 		name = 'Greenback',
 		text = {
-            "The {C:green}Federal Greeserve {}issues {C:green} Green{}-backed securities,",
+            "The {C:green}Federal Greeserve {}issues{C:green} Green{}-backed securities,",
             "increasing the value of played {C:green}Green{} cards by {C:money}3${}",
             "when held in hand"
 		}

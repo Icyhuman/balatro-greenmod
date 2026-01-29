@@ -21,9 +21,9 @@ SMODS.Enhancement {
         if card.ability.extra.num > 0 then
             local num, odds = SMODS.get_probability_vars(card, card.ability.extra.num,
                 card.ability.extra.odds, 'green_green_green')
-            return { vars = { num, odds, ' in ', ' chance to win ','$20', ' greened'} }
+            return { vars = { num, odds, ' in ', ' chance to win ','$20', ' Greened'} }
         else
-            return { vars = { 'greened', '', '', '','', ''} }
+            return { vars = { 'Greened', '', '', '','', ''} }
         end
 
     end,

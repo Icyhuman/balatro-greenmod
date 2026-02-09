@@ -1,4 +1,4 @@
-<img width="400" height="190" alt="logo" src="https://github.com/user-attachments/assets/9e0e7ffb-a917-4c7b-ba21-82cb0448166e" />  
+<img width="400" height="190" alt="logo" src="assets/logo.png" />  
 
 A mod focused around incrementally improving cards, by giving them the new enhancement, Green, which does nothing on its own but enables several powerful jokers.  
 Made by a terrible artist, please excuse the visuals.  
